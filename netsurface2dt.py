@@ -144,7 +144,7 @@ class NetSurf2dt:
                         self.g.add_edge(self.nid(t,i,k), self.nid(t,j,k2), self.INF, 0)
                         if alpha != None:
                             # add constant cost penalty \alpha
-                            self.g.add_edge(i*self.K+k, j*self.K+k, alpha, 0)
+                            self.g.add_edge(i*self.K+k, j*self.K+k2, alpha, 0)
                     # across time points
                     temp_neighbors = []
                     if t>0:   temp_neighbors.append(t-1)

@@ -143,7 +143,7 @@ class NetSurf3d:
                     self.g.add_edge(i*self.K+k, j*self.K+k2, self.INF, 0)
                     if alpha != None:
                         # add constant cost penalty \alpha
-                        self.g.add_edge(i*self.K+k, j*self.K+k, alpha, 0)
+                        self.g.add_edge(i*self.K+k, j*self.K+k2, alpha, 0)
                         
     def get_counts( self ):
         size_s_comp = 0

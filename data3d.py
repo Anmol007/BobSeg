@@ -77,6 +77,9 @@ class Data3d:
         if oid == -1: # not found
             oid = len(self.object_names)
             self.object_names.append(name)
+        #print oid
+
+
         self.object_seedpoints[oid] = [None] * len(self.images)
         self.object_min_surf_dist[oid] = [(0,0)] * len(self.images)
         self.object_max_surf_dist[oid] = [(100,100)] * len(self.images)
@@ -122,6 +125,8 @@ class Data3d:
             self.object_seedpoints[oid][i] = self.interpolate_points(np.array(seed), 
                                                                      np.array(seed_to), 
                                                                      float(i-frame)/(1+frame_to-frame))
+            #print self.object_seedpoints[oid][i]
+            #print i
             if not self.silent:
                 print 'Added appearance for "'+str(self.object_names[oid])+ \
                       '" in frame', i, \
@@ -157,6 +162,9 @@ class Data3d:
             ins, outs = self.netsurfs[oid][f].get_counts()
             print '      Nodes in/out: ', ins, outs
             print '      Area: ', self.object_areas[oid][f]
+
+        plt.plot(self.object_areas[oid]);
+
             
     def segment2dt( self, oid, max_radial_delta=2 ):
         '''
@@ -177,6 +185,10 @@ class Data3d:
                 print 'Results for frame %d:'%(t)
                 print '      Optimum energy: ', optimum
                 print '      Area: ', self.object_areas[oid][t]
+
+
+        plt.plot(self.object_areas[oid], 'ro')
+        plt.plot(self.object_areas[oid])
         
             
     # ***************************************************************************************************

@@ -90,6 +90,7 @@ class MovieMaker2d:
 
             # save frames if desired
             if not folder is None:
+                #print netsurf.get_area()
                 cv2.imwrite(folder + 'frame%04d.png' % (f), outframe)
 
             if inline:
