@@ -80,11 +80,15 @@ class MovieMaker2d:
             for oid in range(0, len(data3d.object_names)):
                 potentialnewdots.extend(self.get_radialdots_in( data3d, f, oid, 2, self.respawn_margin))
             for f_id in fiducials.get_ids():
+                #from IPython.core.debugger import Tracer;
+                #Tracer()()
                 for oid in range(0, len(data3d.object_names)):
                     if np.linalg.norm(data3d.object_seedpoints[oid][f] - fiducials.get(f_id)) < self.nihilation_radius:
-                        fiducials.remove_fiducial(f_id)
                         if self.do_respawn:
                             fiducials.reset( f_id, potentialnewdots[f_id] )
+                        else:
+                            fiducials.remove_fiducial(f_id)
+                        break #avoid to check for further objects, not causing problems with the deleted fiducial
 
             rgbframe = cv2.cvtColor(outframe, cv2.COLOR_BGR2RGB)
 

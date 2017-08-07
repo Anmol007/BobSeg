@@ -72,16 +72,11 @@ class KymoSpider:
         Returns a list of positions and a list of reset points (where fiducial moved out at bottom and a new one was created)
         '''
         pos = init_positions[0]
-        
-        
         positions = [pos]
         resets = []
-        #print(len(flow_kymo))
         for col in range(1,len(flow_kymo[0])): # 1 because flow at t==0 is blank
-            #print flow_kymo[int(round(pos)),col]
             if pos<len(flow_kymo):
                 pos += flow_kymo[int(round(pos)),col]
-           
             if pos>=len(flow_kymo)-1:
                 pos = init_positions[col]
                 resets.append((col,pos))
